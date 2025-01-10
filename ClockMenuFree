@@ -1,0 +1,531 @@
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/bacon"))()
+local DiscordLib = loadstring(game:HttpGet "https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/discord")()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+
+local win = DiscordLib:Window("ClockMenu")
+local serv = win:Server("ClockMenu", "by @velinhocoder")
+local btns = serv:Channel("Credits.")
+
+OrionLib:MakeNotification({
+	Name = "ClockMenu",
+	Content = "Welcome!, NewUpdate: More Scripts - Relesed 1.1V",
+	Image = "rbxassetid://4483345998",
+	Time = 6
+})
+
+OrionLib:MakeNotification({
+	Name = "Politics",
+	Content = "Dont Share The Key. You Can Get Perm Banned From Copy and share to your friend or another peopel.",
+	Image = "rbxassetid://4483345998",
+	Time = 10
+})
+
+
+btns:Label("ALERT: PLEASE DONT SHARE THE KEY! AND THE SCRIPT!")
+btns:Button(
+    "Credits",
+    function()
+        DiscordLib:Notification("Credits Notification", "MADE BY PICTCHEATS / @velinhocoder ", "Okay!")
+        OrionLib:MakeNotification({
+	    Name = "CREDITS - NOTIFICATION",
+	    Content = "PictCheats [@colhaoganes] IN TIKTOK / @velinhocoder in Discord",
+	    Image = "rbxassetid://4483345998",
+	    Time = 5
+})
+    end
+)
+
+btns:Button(
+    "Creator Discord",
+    function()
+        DiscordLib:Notification("Notification", "@velinhocoder in discord! ", "Okay!")
+        OrionLib:MakeNotification({
+            Name = "Alert",
+            Content = "@velinhocoder in Discord",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+
+btns:Seperator()
+btns:Label("Version And Executors Support/No Support")
+
+btns:Button(
+    "Supported Executors",
+    function()
+        DiscordLib:Notification("Supported Executors", "Xeno,Solara,Wave", "Okay!")
+        OrionLib:MakeNotification({
+            Name = "Supported Executors",
+            Content = "Solara,Xeno,Wave",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+btns:Button(
+    "Not Supported Executors",
+    function()
+        DiscordLib:Notification("Not Supported Executors", "Jjsploit", "Okay!")
+        OrionLib:MakeNotification({
+            Name = "Not Supported Executors",
+            Content = "Jjsploit",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+btns:Button(
+    "Version",
+    function()
+        DiscordLib:Notification("Notification", "[Latest] 1.1V [Released] PAY VERSION", "Okay!")
+        OrionLib:MakeNotification({
+            Name = "Version",
+            Content = "You Are OK, 1.1V [PAID]",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+local playeruniversal = serv:Channel("Player - Universal")
+
+playeruniversal:Button(
+    "PP Script - Universal",
+    function()
+        DiscordLib:Notification("Notification", "Loading PP Script!", "Okay!")
+        loadstring(game:HttpGet('https://pastebin.com/raw/ckRgqyad'))()
+        print ("Loading  SCRIPT")
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING IN 1 GAME⭕",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+playeruniversal:Button(
+    "Infinite Yield",
+    function()
+        DiscordLib:Notification("Notification", "Loading PP Script!", "Okay!")
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/edgeiy/infiniteyield/master/source'))()
+        print ("Loading SCRIPT")
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+playeruniversal:Button(
+    "DEX",
+    function()
+        DiscordLib:Notification("Notification", "Loading PP Script!", "Okay!")
+        loadstring(game:HttpGet('https://pastebin.com/raw/BTMcFgVq'))()
+        print ("Loading SCRIPT")
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+playeruniversal:Button(
+    "Hat Hub ",
+    function()
+        DiscordLib:Notification("Notification", "Loading Script!", "Okay!")
+        loadstring(game:HttpGet('https://pastebin.com/raw/M4mGByep'))()
+        print ("Loading SCRIPT")
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+    end
+)
+
+
+
+playeruniversal:Button(
+    "Aquamatrix",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ExploitFin/AquaMatrix/refs/heads/AquaMatrix/AquaMatrix"))()
+        print ("Loading PP SCRIPT")
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+playeruniversal:Button(
+    "RESPAWN - Universal",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(10,30,30)
+        print ("Loading SCRIPT")
+    end
+)
+
+playeruniversal:Button(
+    "OPFinality FE Gui ",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        loadstring(game:HttpGet('https://pastebin.com/raw/5peiDaCs'))()
+        print ("Loading SCRIPT")
+    end
+)
+
+playeruniversal:Button(
+    "PANDORA GUI!",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        loadstring(game:HttpGet('https://pastebin.com/raw/CwbL11xT'))()
+        print ("Loading SCRIPT")
+    end
+)
+
+playeruniversal:Button(
+    "FE1 - GUI",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        loadstring(game:HttpGet('https://pastebin.com/raw/f3hBVqPD'))()
+        print ("Loading SCRIPT")
+    end
+)
+
+playeruniversal:Button(
+    "ENERGIZE HUB - GUI",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        loadstring(game:HttpGet('https://pastebin.com/raw/eb6Aiksu'))()
+        print ("Loading SCRIPT")
+    end
+)
+
+playeruniversal:Label("Impossible Run.Device")
+
+playeruniversal:Button(
+    "PATCHED!!!!!!!!!! - GUI",
+    function()
+        DiscordLib:Notification("Notification", "Uknodown Error On Service", "Okay!")
+        print ("Cant Load")
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "Dont Working [PATCHED]⭕",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+playeruniversal:Label("PATCHED⭕CANT RUN ")
+
+playeruniversal:Button(
+    "PATCHED.. - GUI",
+    function()
+        DiscordLib:Notification("Error", "cant run⭕⭕", "Okay!")
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "Dont Working [PATCHED]⭕",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+        print ("Loading SCRIPT")
+    end
+)
+
+local plr = serv:Channel("Player")
+
+
+plr:Label("SPAM Only Works In [SOLARA,WAVE]")
+plr:Toggle(
+    "SPAM ON CHAT",
+    false,
+    function(bool)
+        loadstring(game:HttpGet('https://pastebin.com/raw/Y1aT1NXi'))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "Dont Working [PATCHED]⭕",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end
+)
+
+--
+
+plr:Textbox(
+    "Print On DevConsole",
+    "Write Here!",
+    true,
+    function(t)
+        print(t)
+    end
+)
+
+
+plr:Button(
+    "PP ALL GAMES",
+    function()
+        DiscordLib:Notification("WARNING⭕", "CANT RUN⭕", "Okay!")
+        print ("CANT LOAD")
+    end
+)
+
+
+plr:Label("Show ESP, but Skeleton form")
+
+plr:Button(
+    "Skeleton ESP",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Lennox2010/mnynbe/main/ss.lua"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+plr:Button(
+    "FLY/NOCLIP/ETC...",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+plr:Label("Aquamatrix - Dance Script")
+plr:Button(
+    "AQUAMATRIX",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ExploitFin/AquaMatrix/refs/heads/AquaMatrix/AquaMatrix"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+
+
+local gamess = serv:Channel("Games")
+gamess:Label("Current Game Scripts Version:0.1.1V [TESTING]")
+
+gamess:Button(
+    "Flex your avatar value!",
+    function()
+        DiscordLib:Notification("Notification", "Loading SCRIPT!", "Okay!")
+        while wait() do game:GetService("ReplicatedStorage").efectos:FireServer("ping", 99999) end
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "Dont Working!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "Counter Blox",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/fliskScript/jaran.vip/main/free.lua"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "Krush PVP",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        local kayhub = loadstring(game:HttpGet('https://raw.githubusercontent.com/tvgueimer84/jshdhhfkayhub/main/uxjssoakhub.lua'))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "Blox Fruits",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/CheemsNhuChiAl/Sotringhuhu/main/StrawberryHubBeta1.35"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "Arsenal",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/arsenal-hub/main/Arsenal%20GamingScripter", true))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "Bloxburg",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/bedra45/bloxburg/main/bedrahub"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "MM2 . Option1",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Au0yX/Community/main/XhubMM2"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "WORKING🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "Military War Tyccon",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/chesisit/releases/main/Military%20War%20Tycoon%20Autokill%20Script"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "10% Baniment Chance",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "Mall Drifters - CHEAT",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/emwmelchi/eee/refs/heads/main/lmaoo"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "10% Baniment Chance",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+gamess:Button(
+    "Mall Drifters - UNLOCK ACESS",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet("https://pastebin.com/raw/BTMcFgVq"))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "10% Baniment Chance",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+
+local injct = serv:Channel("Injectores")
+
+injct:Button(
+    "Chat Bypasser",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Reimagined/refs/heads/main/Gaze%20bypass'))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "NO BANIMENT CHANCE🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+injct:Button(
+    "REVERSE - PRESS [E]",
+    function()
+        DiscordLib:Notification("Notification", "Loading", "Okay!")
+        loadstring(game:HttpGet('https://pastebin.com/raw/HAiQa0ap'))()
+        OrionLib:MakeNotification({
+            Name = "ClockMenu",
+            Content = "NO BANIMENT CHANCE🟢",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })  
+        print ("Loading SCRIPT")
+    end
+)
+
+
+--https://pastebin.com/raw/HAiQa0ap
+
+serv:Channel("by @velinhocoder")
+
+win:Server("Waiting for Updates?", "http://www.roblox.com/asset/?id=6031075938")
