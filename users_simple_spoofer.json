@@ -1,0 +1,14 @@
+[
+  {
+    "Username": "admin",
+    "Password": "123456",
+    "Key": "ABCDEF-123456",
+    "HWID": "1234567890"
+  },
+  {
+    "Username": "user1",
+    "Password": "senha123",
+    "Key": "XYZ-987654",
+    "HWID": "0987654321"
+  }
+]
