@@ -1,14 +1,15 @@
 local Library = {}
 
-local VERSION = "v1.2A"
+local VERSION = "v1.3A"
 
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local CoreGui = game:GetService("CoreGui")
 
 -- Limpar UIs antigas
-for _, v in pairs(game.CoreGui:GetChildren()) do
+for _, v in pairs(CoreGui:GetChildren()) do
     if v:IsA("ScreenGui") and v.Name == "Neverlose" then
         v:Destroy() 
     end
@@ -104,9 +105,9 @@ local function ClickEffect(options)
 end
 
 function Library:Toggle(value)
-    if game.CoreGui:FindFirstChild("Neverlose") == nil then return end
-    local enabled = (type(value) == "boolean" and value) or game.CoreGui:FindFirstChild("Neverlose").Enabled
-    game.CoreGui:FindFirstChild("Neverlose").Enabled = not enabled
+    if CoreGui:FindFirstChild("Neverlose") == nil then return end
+    local enabled = (type(value) == "boolean" and value) or CoreGui:FindFirstChild("Neverlose").Enabled
+    CoreGui:FindFirstChild("Neverlose").Enabled = not enabled
 end
 
 function Library:Window(options)
@@ -129,7 +130,7 @@ function Library:Window(options)
     local TabContainer = Instance.new("Frame")
 
     -- ScreenGui
-    SG.Parent = game.CoreGui
+    SG.Parent = CoreGui
     SG.Name = "Neverlose"
     SG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -257,7 +258,7 @@ function Library:Window(options)
         TabSection.Size = UDim2.new(0, 189, 0, 22)
 
         local function ResizeTS(num)
-            TabSection.Size += UDim2.new(0, 0, 0, num)
+            TabSection.Size = TabSection.Size + UDim2.new(0, 0, 0, num)
         end
 
         TabSectionLabel.Name = "TabSectionLabel"
@@ -441,7 +442,7 @@ function Library:Window(options)
                 SectionSizeConstraint.MinSize = Vector2.new(215, 35)
 
                 local function Resize(num)
-                    SectionSizeConstraint.MinSize += Vector2.new(0, num)
+                    SectionSizeConstraint.MinSize = SectionSizeConstraint.MinSize + Vector2.new(0, num)
                 end
 
                 local Elements = {}
@@ -695,14 +696,17 @@ function Library:Window(options)
                         
                         if Enter then
                             if SliderTextBox.Text ~= nil and SliderTextBox.Text ~= "" then
-                                if tonumber(SliderTextBox.Text) > options.max then
-                                    SliderTextBox.Text = tostring(options.max)
-                                    options.callback(options.max)
-                                elseif tonumber(SliderTextBox.Text) < options.min then
-                                    SliderTextBox.Text = tostring(options.min)
-                                    options.callback(options.min)
-                                elseif not tonumber(SliderTextBox.Text) < options.min and not tonumber(SliderTextBox.Text) > options.max then
-                                    options.callback(SliderTextBox.Text)
+                                local num = tonumber(SliderTextBox.Text)
+                                if num then
+                                    if num > options.max then
+                                        SliderTextBox.Text = tostring(options.max)
+                                        options.callback(options.max)
+                                    elseif num < options.min then
+                                        SliderTextBox.Text = tostring(options.min)
+                                        options.callback(options.min)
+                                    else
+                                        options.callback(num)
+                                    end
                                 end
                             end
                         end
@@ -818,7 +822,6 @@ function Library:Window(options)
 
                     for _, v in pairs(options.list) do
                         local DropdownBtn = Instance.new("TextButton")
-                        local Count = 1
 
                         DropdownBtn.Name = "DropdownBtn"
                         DropdownBtn.Parent = DropdownList
@@ -835,8 +838,6 @@ function Library:Window(options)
                         
                         ClickEffect({button = DropdownBtn, amount = 5})
 
-                        Count = Count + 1
-                        DropdownList.ZIndex = DropdownList.ZIndex - Count
                         DropYSize = DropYSize + 18
 
                         DropdownBtn.MouseButton1Click:Connect(function()
@@ -1052,15 +1053,6 @@ function Library:Window(options)
 
                     local WheelDown = false
                     local SlideDown = false
-
-                    local function ToPolar(v)
-                        return math.atan2(v.y, v.x), v.magnitude
-                    end
-
-                    local function RadToDeg(x)
-                        return ((x + math.pi) / (2 * math.pi)) * 360
-                    end
-                    
                     local color = {1, 1, 1}
 
                     local function ToHex(color)
@@ -1068,9 +1060,7 @@ function Library:Window(options)
                     end
                     
                     local function Update()
-                        local r = color[1]
-                        local g = color[2]
-                        local b = color[3]
+                        local r, g, b = color[1], color[2], color[3]
                         local c = Color3.fromHSV(r, g, b)
                         ColorHex.Text = tostring(ToHex(c))
                     end
@@ -1093,7 +1083,8 @@ function Library:Window(options)
                     
                     local function UpdateRing()
                         local ml = Mouse
-                        local x, y = ml.X - RGB.AbsolutePosition.X, ml.Y - RGB.AbsolutePosition.Y
+                        local x = ml.X - RGB.AbsolutePosition.X
+                        local y = ml.Y - RGB.AbsolutePosition.Y
                         local maxX, maxY = RGB.AbsoluteSize.X, RGB.AbsoluteSize.Y
                         if x < 0 then x = 0 end
                         if x > maxX then x = maxX end
@@ -1133,16 +1124,371 @@ function Library:Window(options)
                     end)
 
                     RGB.MouseMoved:Connect(function()
-                        if WheelDown then
-                            UpdateRing()
-                        end
+                        if WheelDown then UpdateRing() end
                     end)
                     
                     Darkness.MouseMoved:Connect(function()
-                        if SlideDown then
-                            UpdateSlide()
-                        end
+                        if SlideDown then UpdateSlide() end
                     end)
 
                     local function SetColor(tbl)
-                        local realcolor = Color3.fromHSV(tbl[1], t
+                        local realcolor = Color3.fromHSV(tbl[1], tbl[2], tbl[3])
+                        ColorHex.Text = tostring(ToHex(realcolor))
+                        DarknessCircle.BackgroundColor3 = realcolor
+                    end
+                    
+                    SetColor({hue, sat, val})
+                end
+
+                function Elements:Keybind(options)
+                    if not options.text or not options.default or not options.callback then 
+                        Notify("Keybind", "Missing arguments") 
+                        return 
+                    end
+
+                    Resize(25)
+
+                    local Blacklisted = {
+                        Return = true, Space = true, Tab = true,
+                        W = true, A = true, S = true, D = true,
+                        I = true, O = true, Unknown = true
+                    }
+
+                    local Short = {
+                        RightControl = "RCtrl",
+                        LeftControl = "LCtrl",
+                        LeftShift = "LShift",
+                        RightShift = "RShift",
+                        MouseButton1 = "M1",
+                        MouseButton2 = "M2",
+                        LeftAlt = "LAlt",
+                        RightAlt = "RAlt"
+                    }
+
+                    local oldKey = options.default.Name
+                    local Keybind = Instance.new("Frame")
+                    local KeybindButton = Instance.new("TextButton")
+                    local KeybindLabel = Instance.new("TextLabel")
+
+                    Keybind.Name = "Keybind"
+                    Keybind.Parent = SectionFrame
+                    Keybind.BackgroundTransparency = 1
+                    Keybind.BorderSizePixel = 0
+                    Keybind.Position = UDim2.new(0.035, 0, 0.945, 0)
+                    Keybind.Size = UDim2.new(0, 200, 0, 22)
+                    Keybind.ZIndex = 2
+                    
+                    ButtonEffect({frame = KeybindButton, entered = Keybind})
+
+                    KeybindButton.Name = "KeybindButton"
+                    KeybindButton.Parent = Keybind
+                    KeybindButton.AnchorPoint = Vector2.new(0.5, 0.5)
+                    KeybindButton.BackgroundTransparency = 1
+                    KeybindButton.BorderSizePixel = 0
+                    KeybindButton.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    KeybindButton.Size = UDim2.new(0, 200, 0, 22)
+                    KeybindButton.AutoButtonColor = false
+                    KeybindButton.Font = Enum.Font.Gotham
+                    KeybindButton.Text = " " .. options.text
+                    KeybindButton.TextColor3 = Color3.fromRGB(157, 171, 182)
+                    KeybindButton.TextSize = 14
+                    KeybindButton.TextXAlignment = Enum.TextXAlignment.Left
+                    
+                    KeybindButton.MouseButton1Click:Connect(function()
+                        KeybindLabel.Text = "... "
+                        TweenService:Create(KeybindButton, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                            TextColor3 = Color3.fromRGB(234, 239, 246)
+                        }):Play()
+                        TweenService:Create(KeybindLabel, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                            TextColor3 = Color3.fromRGB(234, 239, 246)
+                        }):Play()
+                        
+                        local inputbegan = UserInputService.InputBegan:Wait()
+                        
+                        if not Blacklisted[inputbegan.KeyCode.Name] then
+                            TweenService:Create(KeybindLabel, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                TextColor3 = Color3.fromRGB(157, 171, 182)
+                            }):Play()
+                            TweenService:Create(KeybindButton, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                TextColor3 = Color3.fromRGB(157, 171, 182)
+                            }):Play()
+                            KeybindLabel.Text = Short[inputbegan.KeyCode.Name] or inputbegan.KeyCode.Name
+                            oldKey = inputbegan.KeyCode.Name
+                        else
+                            TweenService:Create(KeybindButton, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                TextColor3 = Color3.fromRGB(157, 171, 182)
+                            }):Play()
+                            TweenService:Create(KeybindLabel, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+                                TextColor3 = Color3.fromRGB(157, 171, 182)
+                            }):Play()
+                            KeybindLabel.Text = Short[oldKey] or oldKey
+                        end
+                    end)
+
+                    UserInputService.InputBegan:Connect(function(key, focused)
+                        if not focused then
+                            if key.KeyCode.Name == oldKey then
+                                options.callback(oldKey)
+                            end
+                        end
+                    end)
+
+                    KeybindLabel.Name = "KeybindLabel"
+                    KeybindLabel.Parent = KeybindButton
+                    KeybindLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+                    KeybindLabel.BackgroundTransparency = 1
+                    KeybindLabel.Position = UDim2.new(0.91, 0, 0.5, 0)
+                    KeybindLabel.Size = UDim2.new(0, 36, 0, 22)
+                    KeybindLabel.Font = Enum.Font.Gotham
+                    KeybindLabel.Text = oldKey .. " "
+                    KeybindLabel.TextColor3 = Color3.fromRGB(157, 171, 182)
+                    KeybindLabel.TextSize = 14
+                    KeybindLabel.TextXAlignment = Enum.TextXAlignment.Right
+                end
+
+                return Elements
+            end
+
+            return Sections
+        end
+
+        return Tabs
+    end
+
+    return TabSections
+end
+
+return Library
+
+--[[
+═══════════════════════════════════════════════════════════════════
+    NEVERLOSE UI LIBRARY - EXEMPLO DE USO COMPLETO
+═══════════════════════════════════════════════════════════════════
+
+local Library = loadstring(game:HttpGet("YOUR_SCRIPT_URL"))()
+
+-- Criar janela principal com ícone
+local Window = Library:Window({
+    text = "MY SCRIPT",
+    icon = "rbxassetid://7733955511"
+})
+
+-- Criar seção de abas
+local MainTab = Window:TabSection({text = "MAIN"})
+
+-- Criar aba de combate com ícone
+local CombatTab = MainTab:Tab({
+    text = "Combat",
+    icon = "rbxassetid://7733960981"
+})
+
+-- Seção de Aimbot com ícone
+local AimbotSection = CombatTab:Section({
+    text = "Aimbot",
+    icon = "rbxassetid://7733779610"
+})
+
+-- Toggle de Aimbot
+AimbotSection:Toggle({
+    text = "Enable Aimbot",
+    state = false,
+    callback = function(value)
+        print("Aimbot:", value)
+    end
+})
+
+-- Slider de FOV
+AimbotSection:Slider({
+    text = "FOV",
+    min = 0,
+    max = 360,
+    float = 1,
+    callback = function(value)
+        print("FOV:", value)
+    end
+})
+
+-- Dropdown de parte do alvo
+AimbotSection:Dropdown({
+    text = "Target Part",
+    default = "Head",
+    list = {"Head", "Torso", "HumanoidRootPart", "Random"},
+    callback = function(value)
+        print("Target:", value)
+    end
+})
+
+-- Botão de reset
+AimbotSection:Button({
+    text = "Reset Settings",
+    callback = function()
+        print("Settings Reset!")
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Aimbot",
+            Text = "Settings have been reset!",
+            Duration = 3
+        })
+    end
+})
+
+-- Seção de ESP com ícone
+local VisualsSection = CombatTab:Section({
+    text = "ESP",
+    icon = "rbxassetid://7733715400"
+})
+
+-- Toggle de Box ESP
+VisualsSection:Toggle({
+    text = "Box ESP",
+    state = false,
+    callback = function(value)
+        print("Box ESP:", value)
+    end
+})
+
+-- Toggle de Name ESP
+VisualsSection:Toggle({
+    text = "Name ESP",
+    state = false,
+    callback = function(value)
+        print("Name ESP:", value)
+    end
+})
+
+-- Colorpicker de cor do box
+VisualsSection:Colorpicker({
+    text = "Box Color",
+    color = Color3.fromRGB(255, 0, 0),
+    callback = function(color)
+        print("Color:", color)
+    end
+})
+
+-- Textbox de distância máxima
+VisualsSection:Textbox({
+    text = "Max Distance",
+    value = "1000",
+    callback = function(text)
+        print("Distance:", text)
+    end
+})
+
+-- Criar aba de Misc
+local MiscTab = MainTab:Tab({
+    text = "Misc",
+    icon = "rbxassetid://7733920644"
+})
+
+-- Seção de Player com ícone
+local PlayerSection = MiscTab:Section({
+    text = "Player",
+    icon = "rbxassetid://7733954760"
+})
+
+-- Slider de velocidade
+PlayerSection:Slider({
+    text = "Walk Speed",
+    min = 16,
+    max = 100,
+    float = 1,
+    callback = function(value)
+        local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = value
+        end
+    end
+})
+
+-- Slider de altura de pulo
+PlayerSection:Slider({
+    text = "Jump Power",
+    min = 50,
+    max = 200,
+    float = 1,
+    callback = function(value)
+        local humanoid = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+        if humanoid then
+            humanoid.JumpPower = value
+        end
+    end
+})
+
+-- Toggle de voo infinito
+PlayerSection:Toggle({
+    text = "Infinite Jump",
+    state = false,
+    callback = function(value)
+        print("Infinite Jump:", value)
+    end
+})
+
+-- Keybind para toggle da UI
+PlayerSection:Keybind({
+    text = "Toggle UI",
+    default = Enum.KeyCode.RightControl,
+    callback = function(key)
+        Library:Toggle()
+        print("UI Toggled with key:", key)
+    end
+})
+
+-- Seção de Teleports
+local TeleportSection = MiscTab:Section({
+    text = "Teleports",
+    icon = "rbxassetid://7734068321"
+})
+
+-- Dropdown de locais
+TeleportSection:Dropdown({
+    text = "Location",
+    default = "Spawn",
+    list = {"Spawn", "Base", "Arena", "Shop"},
+    callback = function(value)
+        print("Teleporting to:", value)
+    end
+})
+
+-- Botão de teleporte
+TeleportSection:Button({
+    text = "Teleport",
+    callback = function()
+        print("Teleported!")
+    end
+})
+
+═══════════════════════════════════════════════════════════════════
+    ÍCONES DISPONÍVEIS (Roblox Asset IDs)
+═══════════════════════════════════════════════════════════════════
+
+rbxassetid://7733955511  - Logo/Home (Casa)
+rbxassetid://7733960981  - Sword/Combat (Espada)
+rbxassetid://7733779610  - Target/Aim (Mira)
+rbxassetid://7733715400  - Eye/Vision (Olho)
+rbxassetid://7733920644  - Settings/Misc (Engrenagem)
+rbxassetid://7733954760  - Person/Player (Pessoa)
+rbxassetid://7734053426  - Shield/Protection (Escudo)
+rbxassetid://7734068321  - Star/Favorite (Estrela)
+rbxassetid://7743871002  - Crown (Coroa)
+rbxassetid://7733964126  - Lightning (Raio)
+rbxassetid://7733919743  - Heart (Coração)
+rbxassetid://7733965118  - Lock (Cadeado)
+
+═══════════════════════════════════════════════════════════════════
+    RECURSOS DA BIBLIOTECA
+═══════════════════════════════════════════════════════════════════
+
+✅ Button - Botões clicáveis com animação
+✅ Toggle - Interruptores on/off com animação suave
+✅ Slider - Controles deslizantes com entrada de texto
+✅ Dropdown - Menus suspensos animados
+✅ Textbox - Campos de entrada de texto
+✅ Colorpicker - Seletor de cores com visualização hex
+✅ Keybind - Configurador de teclas de atalho
+✅ Ícones personalizáveis em títulos e seções
+✅ Sistema de abas e seções organizadas
+✅ Interface arrastável e responsiva
+✅ Animações suaves com TweenService
+✅ Efeitos visuais em hover e click
+
+═══════════════════════════════════════════════════════════════════
+]]
